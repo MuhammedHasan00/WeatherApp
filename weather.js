@@ -23,7 +23,6 @@ async function checkWeather(city) {
     displayWeather(data);
   }catch(error){
     cityErrorMessage.style.display = "block"
-    
   }
 }
 
