@@ -9,21 +9,25 @@ const appBackground = document.querySelector(".container");
 const cityErrorMessage = document.querySelector(".city-error");
 
 async function checkWeather(city) {
-  const response = await fetch(apiLink + city + `&appid=${apiKey}`);
-  // if (response == 404){
-  //   cityErrorMessage.style.display = "flex";
-  // }else
-
-  if (!response.ok) {
-    throw new Error(console.error("Fetch Failed"));
-    window.alert("Enter a valid city!");
+  try{
+    const response = await fetch(apiLink + city + `&appid=${apiKey}`);
+    // if (response == 404){
+    //   cityErrorMessage.style.display = "flex";
+    // }else
+    if (!response.ok) {
+    throw new Error("Fetch Failed");
     //added error handling so that if the fetch fails we can check in the console
-  } else {
-    console.log("Response Successful");
+    } 
+    let data = await response.json();
     cityErrorMessage.style.display = "none";
+    displayWeather(data);
+  }catch(error){
+    cityErrorMessage.style.display = "block"
+    
   }
-  let data = await response.json();
+}
 
+function displayWeather(data){
   console.log(data);
   try {
     document.querySelector(".live-weather").textContent = data.weather[0].main;
@@ -36,31 +40,52 @@ async function checkWeather(city) {
       data.wind.speed + "km/h Wind Speed";
     document.querySelector(".weather-video").style.display = "flex";
 
-    if (data.weather[0].main == "Clouds") {
+    const todaysWeather = data.weather[0].main;
+    setBackground(todaysWeather)
+  } catch (error) {
+    console.error("Code failed", error);
+  }
+}
+
+function setBackground(todaysWeather){
+  try{
+    switch (todaysWeather) {
+    case "Clouds":
       weatherIcon.src = "cloudy.png";
-      appBackground.style.backgroundColor = "transparent";
       weatherVideo.src = "cloudy.mp4";
-    } else if (data.weather[0].main == "Clear") {
+      appBackground.style.backgroundColor = "transparent"
+      break;
+    case "Clear":
       weatherIcon.src = "clear.png";
-      appBackground.style.backgroundColor = "transparent";
       weatherVideo.src = "sunny-background.mp4";
-    } else if (data.weather[0].main == "Rain") {
+      appBackground.style.backgroundColor = "transparent"
+      break;
+    case "Rain":
       weatherIcon.src = "rain.png";
-      appBackground.style.backgroundColor = "transparent";
       weatherVideo.src = "rain-background.mp4";
-    } else if (data.weather[0].main == "Drizzle") {
+      appBackground.style.backgroundColor = "transparent"
+      break;
+    case "Drizzle":
       weatherIcon.src = "drizzle.png";
-      appBackground.style.backgroundColor = "transparent";
       weatherVideo.src = "rain-background.mp4";
-    } else if (data.weather[0].main == "Snow") {
+      appBackground.style.backgroundColor = "transparent"
+      break;
+    case "Snow":
       weatherIcon.src = "snowflake.png";
-      appBackground.style.backgroundColor = "transparent";
       weatherVideo.src = "snow-background.mp4";
-    } else if (data.weather[0].main == "Mist") {
+      appBackground.style.backgroundColor = "transparent"
+      break;
+    case "Mist":
       weatherIcon.src = "fog.png";
-      appBackground.style.backgroundColor = "transparent";
       weatherVideo.src = "fog-background.mp4";
-    }
+      appBackground.style.backgroundColor = "transparent"
+      break;
+    default:
+      weatherIcon.src = "";
+      weatherVideo.src = "";
+      appBackground.style.backgroundColor = "rgba(255, 255, 255, 0.3)"
+      break;
+  }
     //changes the weather icon depending on the weather of today
 
     document.querySelector(".weather").style.display = "flex";

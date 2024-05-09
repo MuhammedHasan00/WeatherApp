@@ -105,6 +105,8 @@
 .city-error{
   display: none;
   padding: 10px;
+  font-weight: 600;
+  color: red;
 }
 
 .live-weather {
@@ -293,6 +295,11 @@ footer{
   .temp {
     font-size: 0.8rem; 
     font-weight: 500;
+  }
+
+  .city-error{
+    scale: 0.7;
+    text-wrap: nowrap;
   }
 }
 
