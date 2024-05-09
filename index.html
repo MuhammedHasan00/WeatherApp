@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="weather.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div>
+      <video autoplay muted loop plays-inline class="background-video">
+        <source src="clear-sky.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="container">
+      <div class="search-bar">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Enter a city..."
+          spellcheck="false"
+          required
+        />
+
+        <button id="search-button">
+          <img src="search.png" alt="" class="search-icon" /> Search
+        </button>
+      </div>
+      <p class="city-error">Please enter a valid city</p>
+      <div class="weather">
+        <video
+          autoplay
+          muted
+          loop
+          plays-inline
+          class="weather-video"
+          src=""
+          type="video/mp4"
+        ></video>
+        <img src="" class="weather-icon" />
+        <h3 class="live-weather"></h3>
+        <h1 class="temperature"></h1>
+        <h2 class="city"></h2>
+        <div class="details">
+          <div class="column-one">
+            <img src="humidity.png" alt="" class="humidity-icon" />
+            <p class="humidity"></p>
+          </div>
+          <div class="column-two">
+            <img src="wind.png" alt="" class="wind-icon" />
+            <p class="wind"></p>
+          </div>
+        </div>
+
+        <div class="weekly-weather">
+          <ol>
+            <li class="day-1">
+              <span class="date"></span>
+              <span class="img"><img src="" class="daysWeather" /></span>
+              <span class="temp"></span>
+            </li>
+            <li class="day-2">
+              <span class="date"></span>
+              <span class="img"><img src="" class="daysWeather" /></span>
+              <span class="temp"></span>
+            </li>
+            <li class="day-3">
+              <span class="date"></span>
+              <span class="img"><img src="" class="daysWeather" /></span>
+              <span class="temp"></span>
+            </li>
+            <li class="day-4">
+              <span class="date"></span>
+              <span class="day-img"><img src="" class="daysWeather" /></span>
+              <span class="temp"></span>
+            </li>
+            <li class="day-5">
+              <span class="date"></span>
+              <span class="img"><img src="" class="daysWeather" /></span>
+              <span class="temp"></span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">©Copyright. Muhammed Hasan. All rights reserved.</p>
+    <script src="weather.js">
+      Search
+    </script>
+  </body>
+</html>
